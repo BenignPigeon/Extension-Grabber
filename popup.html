@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Extension Link Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #222222;
+      color: #FFFFFF;
+      margin: 20px;
+      width: 300px;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    p {
+      margin-bottom: 40px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    button {
+      display: block;
+      margin: 20px auto 30px; /* Increased margin-bottom */
+      padding: 15px 30px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0052cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Generate Extension Links</h1>
+  <p>Click the button below to generate either an HTML file with links to all installed Chrome extensions or a zip folder filled with the extensions:</p>
+  <button id="generateButton">Generate HTML File</button>
+  <button id="generateZipButton">Generate Zip Folder</button>
+  <script src="popup.js"></script>
+</body>
+</html>
