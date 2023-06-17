@@ -1,0 +1,20 @@
+// manifest.json
+{
+  "manifest_version": 3,
+  "name": "Extension Link Generator",
+  "version": "1.0",
+  "description": "Generates an HTML file with links to all installed Chrome extensions.",
+  "permissions": ["management", "downloads"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Generate Extension Links"
+  },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
