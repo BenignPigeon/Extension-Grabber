@@ -1,12 +1,11 @@
-// manifest.json
 {
   "manifest_version": 3,
-  "name": "Extension Link Generator",
+  "name": "Extension Grabber",
   "version": "1.0",
   "description": "Generates an HTML file with links to all installed Chrome extensions.",
   "permissions": ["management", "downloads"],
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "main-popup.html",
     "default_title": "Generate Extension Links"
   },
   "icons": {
