@@ -25,7 +25,7 @@
 
     button {
       display: block;
-      margin: 20px auto 30px; /* Increased margin-bottom */
+      margin: 20px auto;
       padding: 15px 30px;
       font-size: 16px;
       background-color: #007BFF;
@@ -35,8 +35,23 @@
       cursor: pointer;
     }
 
+    button:nth-child(2) {
+      margin-bottom: 30px;
+    }
+
     button:hover {
       background-color: #0052cc;
+    }
+
+    #settingsIcon {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+    }
+
+    #settingsIcon img {
+      width: 25px;
+      height: 25px;
     }
   </style>
 </head>
@@ -45,6 +60,9 @@
   <p>Click the button below to generate either an HTML file with links to all installed Chrome extensions or a zip folder filled with the extensions:</p>
   <button id="generateButton">Generate HTML File</button>
   <button id="generateZipButton">Generate Zip Folder</button>
-  <script src="popup.js"></script>
+  <a href="#" id="settingsIcon">
+    <img src="settings-icon.png" alt="Settings Icon">
+  </a>
+  <script src="main-popup.js"></script>
 </body>
 </html>
