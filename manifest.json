@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "Extension Grabber",
-  "version": "1.0",
+  "version": "2.0",
   "description": "Generates an HTML file with links to all installed Chrome extensions.",
-  "permissions": ["management", "downloads"],
+  "permissions": ["management", "downloads", "storage"],
   "action": {
     "default_popup": "main-popup.html",
     "default_title": "Generate Extension Links"
