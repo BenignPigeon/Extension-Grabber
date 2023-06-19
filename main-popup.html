@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="mdc-typography">
 <head>
+  <meta charset="utf-8">
   <title>Extension Link Generator</title>
+  <link href="../star-popup.css" rel="stylesheet">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -43,6 +45,14 @@
       background-color: #0052cc;
     }
 
+    .menu {
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+
     #settingsIcon {
       position: fixed;
       bottom: 10px;
@@ -60,9 +70,30 @@
   <p>Click the button below to generate either an HTML file with links to all installed Chrome extensions or a zip folder filled with the extensions:</p>
   <button id="generateButton">Generate HTML File</button>
   <button id="generateZipButton">Generate Zip Folder</button>
-  <a href="#" id="settingsIcon">
+  <a href="settings.html" id="settingsIcon">
     <img src="settings-icon.png" alt="Settings Icon">
   </a>
-  <script src="main-popup.js"></script>
+  
+
+  <footer class="footer">
+    <!-- Review stars -->
+    <div class="stars js-stars">
+      <a class="stars__star-wrapper js-stars__star" target="_blank" href="https://github.com/BenignPigeon/Extension-Grabber/issues"></a>
+      <a class="stars__star-wrapper js-stars__star" target="_blank" href="https://github.com/BenignPigeon/Extension-Grabber/issues"></a>
+      <a class="stars__star-wrapper js-stars__star" target="_blank" href="https://chrome.google.com/webstore/detail/extension-grabber/ciodcdclaoddcbmlnceonknphiphlade/reviews"></a>
+      <a class="stars__star-wrapper js-stars__star" target="_blank" href="https://chrome.google.com/webstore/detail/extension-grabber/ciodcdclaoddcbmlnceonknphiphlade/reviews"></a>
+      <a class="stars__star-wrapper js-stars__star" target="_blank" href="https://chrome.google.com/webstore/detail/extension-grabber/ciodcdclaoddcbmlnceonknphiphlade/reviews"></a>
+    </div>
+    <!-- Made by -->
+    <div>
+  
+      Made by BenignPigeon.
+           
+      <br>
+      <a class="link link--external" tabindex="-1" target="_blank" href="https://www.buymeacoffee.com/benignpigeon">Pay what you like (:</a>
+    
+    </div>
+   </footer>
+
 </body>
 </html>
