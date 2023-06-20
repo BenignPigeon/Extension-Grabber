@@ -3,15 +3,27 @@ let isThrottled = false;
 document.getElementById('generateHTMLButton').addEventListener('click', function() {
   if (!isThrottled) {
     isThrottled = true;
+
+    const darkMode = localStorage.getItem('darkMode');
     
-    chrome.runtime.sendMessage({ action: "generateLinks" }, function(response) {
-      chrome.action.setBadgeText({ text: "" });
-      setTimeout(function() {
-        isThrottled = false;
-      }, 2000); // Wait for 2 seconds before allowing the action again
-    });
+    if (darkMode === 'enabled') {
+      chrome.runtime.sendMessage({ action: "generateDarkLinks" }, function(response) {
+        chrome.action.setBadgeText({ text: "" });
+        setTimeout(function() {
+          isThrottled = false;
+        }, 2000); // Wait for 2 seconds before allowing the action again
+      });
+    } else {
+      chrome.runtime.sendMessage({ action: "generateLightLinks" }, function(response) {
+        chrome.action.setBadgeText({ text: "" });
+        setTimeout(function() {
+          isThrottled = false;
+        }, 2000); // Wait for 2 seconds before allowing the action again
+      });
+    }
   }
 });
+
 
 
 //Dark-mode code
