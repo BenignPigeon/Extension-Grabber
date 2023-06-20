@@ -1,8 +1,18 @@
+let isThrottled = false;
+
 document.getElementById('generateHTMLButton').addEventListener('click', function() {
-  chrome.runtime.sendMessage({ action: "generateLinks" }, function(response) {
-    chrome.action.setBadgeText({ text: "" });
-  });
+  if (!isThrottled) {
+    isThrottled = true;
+    
+    chrome.runtime.sendMessage({ action: "generateLinks" }, function(response) {
+      chrome.action.setBadgeText({ text: "" });
+      setTimeout(function() {
+        isThrottled = false;
+      }, 2000); // Wait for 2 seconds before allowing the action again
+    });
+  }
 });
+
 
 //Dark-mode code
 
