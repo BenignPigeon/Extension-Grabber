@@ -1,3 +1,20 @@
+//start code [on extension install default extension settings]
+chrome.runtime.onInstalled.addListener(function() {
+  chrome.management.getAll(function(extensions) {
+    var extensionStates = {};
+
+    extensions.forEach(function(extension) {
+      extensionStates[extension.id] = extension.enabled;
+    });
+
+    // Save the extension states
+    chrome.storage.sync.set(extensionStates, function() {
+      console.log('Extension states saved');
+    });
+  });
+});
+
+//main code [main extension settings]
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.action === "generateLinks") {
     chrome.management.getAll(function(extensions) {
