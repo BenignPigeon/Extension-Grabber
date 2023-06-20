@@ -3,68 +3,22 @@
 <head>
   <meta charset="utf-8">
   <title>Extension Link Generator</title>
-  <link href="../star-popup.css" rel="stylesheet">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #222222;
-      color: #FFFFFF;
-      margin: 20px;
-      width: 300px;
-    }
+  <link href="../css/main-popup.css" rel="stylesheet">
 
-    h1 {
-      font-size: 30px;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    p {
-      margin-bottom: 40px;
-      text-align: center;
-      font-size: 18px;
-    }
-
-    button {
-      display: block;
-      margin: 20px auto;
-      padding: 15px 30px;
-      font-size: 16px;
-      background-color: #007BFF;
-      color: #FFFFFF;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:nth-child(2) {
-      margin-bottom: 30px;
-    }
-
-    button:hover {
-      background-color: #0052cc;
-    }
-
-    #settingsIcon {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-    }
-
-    #settingsIcon img {
-      width: 25px;
-      height: 25px;
-    }
-  </style>
 </head>
 <body>
-  <h1>Generate Extension Links</h1>
+  <a href="settings.html" class="settingsIcon"></a>
+  <h1>Generate Extensions</h1>
   <p>Click the button below to generate either an HTML file with links to all installed Chrome extensions or a zip folder filled with the extensions:</p>
   <button id="generateHTMLButton">Generate HTML File</button>
   <button id="generateZipButton">Generate Zip Folder</button>
-  <a href="settings.html" id="settingsIcon">
-    <img src="settings-icon.png" alt="Settings Icon">
-  </a>
+
+  <div id="darkModeToggle">
+    <label class="switch">
+      <input type="checkbox" class="switch__checkbox" id="dark-mode-toggle">
+      <span class="switch__slider"></span>
+    </label>
+  </div>
   
 
   <footer class="footer">
@@ -79,14 +33,14 @@
     <!-- Made by -->
     <div>
   
-      Made by BenignPigeon.
-           
-      <br>
-      <a class="link link--external" tabindex="-1" target="_blank" href="https://www.buymeacoffee.com/benignpigeon">Pay what you like (:</a>
-    
+    <p>
+      <span style="font-size: 20px;">Made by BenignPigeon</span>
+    <br>
+      <a class="link link--external" tabindex="-1" target="_blank" href="https://www.buymeacoffee.com/benignpigeon">Buy me a coffee?</a>
+    </p>
     </div>
    </footer>
-   <script src="main-popup.js"></script>
+   <script src="../js/main-popup.js"></script>
 
 </body>
 </html>

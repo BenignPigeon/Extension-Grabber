@@ -40,43 +40,55 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       var numRows = Math.ceil(totalExtensions / numColumns);
       var numEmptyCells = numColumns - (totalExtensions % numColumns);
 
-      for (var i = 0; i < extensions.length; i++) {
-        var extension = extensions[i];
-        var storeUrl = 'https://chrome.google.com/webstore/detail/' + extension.id;
-        var extensionNumber = i + 1;
-        htmlContent += '<div class="extension-item">';
-        htmlContent += '<span class="extension-number">' + extensionNumber + '</span>';
-        htmlContent += '<div class="extension-details">';
-        htmlContent += '<p><span class="extension-title">' + extension.name + '</span></p>';
-        htmlContent += '<button class="extension-button" onclick="window.open(\'' + storeUrl + '\')">Open</button>';
-        htmlContent += '</div>';
-        htmlContent += '</div>';
-      }
+      chrome.storage.sync.get(null, function(items) {
+        // Filter extensions based on enabled state
+        var enabledExtensions = extensions.filter(function(extension) {
+          return items[extension.id];
+        });
 
-      if (numEmptyCells > 0 && numEmptyCells < numColumns) {
-        for (var j = 0; j < numEmptyCells; j++) {
-          htmlContent += '<div class="extension-item ghost-cell"></div>';
+        enabledExtensions.sort(function(a, b) {
+          return a.name.localeCompare(b.name);
+        });
+
+        // Generate HTML links for enabled extensions
+        for (var i = 0; i < enabledExtensions.length; i++) {
+          var extension = enabledExtensions[i];
+          var storeUrl = 'https://chrome.google.com/webstore/detail/' + extension.id;
+          var extensionNumber = i + 1;
+          htmlContent += '<div class="extension-item">';
+          htmlContent += '<span class="extension-number">' + extensionNumber + '</span>';
+          htmlContent += '<div class="extension-details">';
+          htmlContent += '<p><span class="extension-title">' + extension.name + '</span></p>';
+          htmlContent += '<button class="extension-button" onclick="window.open(\'' + storeUrl + '\')">Open</button>';
+          htmlContent += '</div>';
+          htmlContent += '</div>';
         }
-      }
 
-      htmlContent += '</div>';
-      htmlContent += '</body>';
-      htmlContent += '<script>';
-      htmlContent += 'function openAllExtensions() {';
-      htmlContent += '  var extensionButtons = document.getElementsByClassName("extension-button");';
-      htmlContent += '  for (var k = 0; k < extensionButtons.length; k++) {';
-      htmlContent += '    window.open(extensionButtons[k].getAttribute("onclick").match(/\'([^\']+)\'/)[1]);';
-      htmlContent += '  }';
-      htmlContent += '}';
-      htmlContent += '</script>';
-      htmlContent += '</html>';
+        if (numEmptyCells > 0 && numEmptyCells < numColumns) {
+          for (var j = 0; j < numEmptyCells; j++) {
+            htmlContent += '<div class="extension-item ghost-cell"></div>';
+          }
+        }
 
-      chrome.downloads.download({
-        url: 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlContent),
-        filename: 'Extensions.html',
-        saveAs: true
-      }, function() {
-        sendResponse({});
+        htmlContent += '</div>';
+        htmlContent += '</body>';
+        htmlContent += '<script>';
+        htmlContent += 'function openAllExtensions() {';
+        htmlContent += '  var extensionButtons = document.getElementsByClassName("extension-button");';
+        htmlContent += '  for (var k = 0; k < extensionButtons.length; k++) {';
+        htmlContent += '    window.open(extensionButtons[k].getAttribute("onclick").match(/\'([^\']+)\'/)[1]);';
+        htmlContent += '  }';
+        htmlContent += '}';
+        htmlContent += '</script>';
+        htmlContent += '</html>';
+
+        chrome.downloads.download({
+          url: 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlContent),
+          filename: 'Extensions.html',
+          saveAs: true
+        }, function() {
+          sendResponse({});
+        });
       });
 
     });
