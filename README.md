@@ -13,4 +13,5 @@ Whether you want to share extension links or consolidate your extensions into a 
 
 
 Download from the chrome extension store:
+
 https://chrome.google.com/webstore/detail/extension-grabber/ciodcdclaoddcbmlnceonknphiphlade
